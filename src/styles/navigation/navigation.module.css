@@ -1,0 +1,180 @@
+:root {
+    /* 🎨 Colores base */
+    --color-bg-main: #f4f7f9;
+    --color-bg-barra: #2f3e46;
+    --color-bg-menu: #354f52;
+    --color-bg-submenu: #3a5a40;
+    --color-bg-li: #52796f;
+    --color-li-hover: #cad2c5;
+  
+    --color-text-primary: #ffffff;
+    --color-text-secondary: #e0e0e0;
+    --color-text-main: #2f3e46;
+  
+    --color-btn-bg: #1d1d1d;
+    --color-btn-hover: #333;
+    --color-btn-shadow: rgba(0, 0, 0, 0.4);
+  
+    /* 🎯 Espaciado y diseño */
+    --radius-small: 4px;
+    --radius-medium: 8px;
+    --radius-large: 16px;
+  
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 30px;
+  
+    --shadow-light: 0 1px 4px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 2px 0 8px rgba(0, 0, 0, 0.2);
+    --shadow-btn: 2px 2px 6px var(--color-btn-shadow);
+  
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-size-title: 1.2rem;
+  }
+  
+  /* 🧱 Contenedor principal */
+  .body {
+    display: flex;
+    background-color: var(--color-bg-main);
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: var(--font-family);
+  }
+  
+  /* 📚 Barra lateral */
+  .barra {
+    background-color: var(--color-bg-barra);
+    color: var(--color-text-primary);
+    height: 100%;
+    width: 280px;
+    box-shadow: var(--shadow-medium);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: var(--spacing-md) var(--spacing-sm);
+    transition: transform 0.3s ease-in-out;
+    z-index: 10;
+  }
+  .oculatar{
+    display: none;
+    transition: 5s ease;
+  }
+  
+  .barra h1 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+  }
+  
+  /* 👤 Datos del usuario */
+  .barra .datos {
+    background-color: var(--color-bg-menu);
+    color: var(--color-text-secondary);
+    margin: var(--spacing-sm) 0;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-medium);
+    box-shadow: var(--shadow-light);
+    font-size: 0.9rem;
+  }
+  
+  /* 📂 Menú */
+  .menu {
+    background-color: var(--color-bg-menu);
+    border-radius: var(--radius-medium);
+    overflow-x: hidden;
+    padding-bottom: var(--spacing-sm);
+    color: var(--color-text-primary);
+  }
+  
+  .menu .titulo {
+    background-color: transparent;
+    margin: var(--spacing-sm);
+    font-size: var(--font-size-title);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    border-radius: var(--radius-small);
+    font-weight: bold;
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* 🎯 Efecto visual al pasar el mouse */
+  .menu .titulo:hover {
+    background-color: var(--color-li-hover); /* fondo claro al pasar el mouse */
+    color: var(--color-text-main); /* cambia texto a oscuro */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* sombra sutil */
+  }
+  
+  
+  /* 📜 Submenú */
+  .menu ul {
+    background-color: var(--color-bg-submenu);
+    padding: var(--spacing-xs) 0;
+    border-radius: 0 0 var(--radius-medium) var(--radius-medium);
+  }
+  
+  .menu li {
+    list-style: none;
+    position: relative;
+    left: 25px;
+    background-color: var(--color-bg-li);
+    color: var(--color-text-primary);
+    padding: var(--spacing-sm);
+    margin: var(--spacing-xs) 0;
+    border-radius: var(--radius-small);
+    transition: background-color 0.3s ease;
+  }
+  
+  .menu li a {
+    color: var(--color-text-primary);
+    text-decoration: none;
+    display: block;
+    width: 100%;
+  }
+  
+  .menu li:hover {
+    background-color: var(--color-li-hover);
+    color: var(--color-text-main);
+    transition: background-color 0.3s ease;
+  }
+  
+  .menu li:hover a {
+    color: var(--color-text-main);
+  }
+  
+  /* 📄 Contenido principal */
+  .main {
+    flex: 1;
+    padding: var(--spacing-lg);
+    overflow-y: auto;
+    color: var(--color-text-main);
+  }
+  
+  /* 🔘 Botón de ocultar */
+  .ocultar {
+    background-color: var(--color-btn-bg);
+    color: aliceblue;
+    position: fixed;
+    top: var(--spacing-md);
+    right: var(--spacing-md);
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: var(--shadow-btn);
+    cursor: pointer;
+    z-index: 100;
+    transition: background-color 0.3s ease;
+  }
+  
+  
+  .ocultar:hover {
+    background-color: var(--color-btn-hover);
+  }
+  

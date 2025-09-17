@@ -1,0 +1,71 @@
+/* Contenedor que ocupa toda la pantalla y centra el formulario */
+.contenedor {
+    background-color: rgb(65, 91, 75);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Caja del login */
+  .new {
+    background-color: #ffffff;
+    width: 400px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Título */
+  .new h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Fieldsets */
+  .new fieldset {
+    border: none;
+    margin-bottom: 15px;
+  }
+  
+  /* Legend */
+  .new legend {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+  }
+  
+  /* Inputs */
+  .new input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    box-sizing: border-box;
+  }
+  .new input:focus {
+   border-color: #2575fc;
+  }
+  
+  /* Botón */
+  .new button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background-color: #1c2029;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .new button:hover {
+    background-color: #888a89;
+    color: black;
+  }
+  
