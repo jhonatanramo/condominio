@@ -17,7 +17,7 @@ export function Prueva() {
   return (
     <div>
       <Barra>
-      <h2>Lista de Países</h2>
+      <h2>Lista Países</h2>
       <ul>
         {paises.map(pais => (
           <li key={pais.id}>
