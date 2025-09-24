@@ -75,7 +75,7 @@ export function Index() {
             <ul>
               <li>Verifica que la URL sea correcta</li>
               <li>Comprueba tu conexión a internet</li>
-              <li>Intenta más tarde</li>
+              <li>Intenta más tard</li>
             </ul>
           </div>
         </div>
