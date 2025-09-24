@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Login } from "./pages/Login";
 import { Index } from "./pages/Index";
+import { LandingPages } from "./pages/landigpages";
 
 export function App() {
   return (
