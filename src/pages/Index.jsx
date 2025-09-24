@@ -75,7 +75,6 @@ export function Index() {
             <ul>
               <li>Verifica que la URL sea correcta</li>
               <li>Comprueba tu conexión a internet</li>
-              <li>La API puede estar temporalmente fuera de servicio</li>
               <li>Intenta más tarde</li>
             </ul>
           </div>
