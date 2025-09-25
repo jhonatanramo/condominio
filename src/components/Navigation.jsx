@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MenuItem } from "./MenuItem";
 import styles from "./../styles/navigation/navigation.module.css";
-
+//nose
 export function Barra({ children }) {
     const [isContraida, setIsContraida] = useState(false);
     const [menuAbierto, setMenuAbierto] = useState(null);
