@@ -3,8 +3,8 @@ import { Login } from "./pages/Login";
 import { Index } from "./pages/Index";
 import { Crud_usuario } from "./pages/condominio/propietarios";
 import Pantalla404 from "./components/Pantalla404";
-import { Unidad } from "./pages/condominio/unidad";
-import { Tarjeta } from "./components/tarjeta";
+import { Unidad } from "./pages/condominio/Unidad";
+import { Tarjeta } from "./components/Tarjeta";
 import { Agendas } from "./pages/condominio/Agendas"; 
 import { Dashboard } from "./pages/condominio/Dashboard";
 
