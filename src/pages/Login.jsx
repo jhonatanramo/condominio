@@ -16,18 +16,37 @@ export function Login() {
     setError("");
     
     try {
-      const res = await api.post("/api/token/", {
+      const res = await api.post("/login/", {
         username: email,
         password,
       });
-
-      // Guardar tokens en localStorage
-      localStorage.setItem("access_token", res.data.access);
-      localStorage.setItem("refresh_token", res.data.refresh);
-
-      navigate("/index"); // Redirige al Index
-    } catch {
-      setError("Usuario o contraseña incorrecta");
+  
+      // Manejar respuesta con JWT
+      if (res.data.access) {
+        // Guardar tokens JWT
+        localStorage.setItem("access_token", res.data.access);
+        localStorage.setItem("refresh_token", res.data.refresh);
+        localStorage.setItem("user_data", JSON.stringify(res.data.user));
+        
+        navigate("/index");
+      } 
+      // Manejar respuesta con mensaje simple
+      else if (res.data.message === "Login exitoso") {
+        localStorage.setItem("isAuthenticated", "true");
+        localStorage.setItem("username", email);
+        localStorage.setItem("user_data", JSON.stringify(res.data.user));
+        navigate("/index");
+      }
+      else {
+        setError(res.data.error || "Respuesta inesperada del servidor");
+      }
+      
+    } catch (error) {
+      if (error.response?.data?.error) {
+        setError(error.response.data.error);
+      } else {
+        setError("Error de conexión con el servidor");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -46,11 +65,11 @@ export function Login() {
         
         <form onSubmit={handleSubmit} className={css.loginForm}>
           <div className={css.inputGroup}>
-            <label htmlFor="email">Correo Electrónico</label>
+            <label htmlFor="email">Cedula de Identidad</label>
             <input
               id="email"
-              type="email"
-              placeholder="usuario@ejemplo.com"
+              type="text"
+              placeholder="C.I."
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

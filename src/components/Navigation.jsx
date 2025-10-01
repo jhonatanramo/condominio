@@ -1,98 +1,65 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MenuItem } from "./MenuItem";
+import api from "./../api"; 
 import styles from "./../styles/navigation/navigation.module.css";
-//nose
+
 export function Barra({ children }) {
     const [isContraida, setIsContraida] = useState(false);
     const [menuAbierto, setMenuAbierto] = useState(null);
+    const [usuario, setUsuario] = useState(null);
 
     const toggleBarra = () => {
         setIsContraida(!isContraida);
-        // Cerrar todos los menús al contraer la barra
         if (!isContraida) {
             setMenuAbierto(null);
         }
     };
 
     const toggleMenu = (titulo) => {
-        if (menuAbierto === titulo) {
-            setMenuAbierto(null);
-        } else {
-            setMenuAbierto(titulo);
-        }
+        setMenuAbierto(menuAbierto === titulo ? null : titulo);
     };
+
+    // 🔹 Obtener usuario de sesión en Django
+    useEffect(() => {
+        api.get("/datos/personales/", { withCredentials: true })
+            .then(res => setUsuario(res.data.usuario))
+            .catch(err => console.error("Error al obtener usuario:", err.response?.data || err.message));
+    }, []);
 
     return (
         <div className={styles.body}>
-            {/* Barra lateral que se contrae/expande */}
             <div className={`${styles.barra} ${isContraida ? styles.contraida : ''}`}>
-                {/* Botón de contraer/expandir */}
-                <div 
-                    className={styles.ocultar} 
-                    onClick={toggleBarra}
-                    title={isContraida ? "Expandir barra" : "Contraer barra"}
-                >
+                <div className={styles.ocultar} onClick={toggleBarra}>
                     {isContraida ? "→" : "←"}
                 </div>
 
-                {/* SECCIÓN SUPERIOR */}
                 <div className={styles["barra-superior"]}>
                     <h1>🌊 OceanCond</h1>
                 </div>
 
-                {/* SECCIÓN MEDIA */}
                 <div className={styles["barra-media"]}>
                     <div className={styles["menu-container"]}>
-                        <MenuItem
-                            icono="business-outline"
-                            titulo="Condominios"
-                            vector={["Gestionar", "Información"]}
-                            link={["/gestionar", "/informacion"]}
-                            isOpen={menuAbierto === "Condominios"}
-                            onToggle={() => toggleMenu("Condominios")}
-                            isBarraContraida={isContraida}
-                        />
-                        <MenuItem
-                            icono="cash-outline"
-                            titulo="Ventas"
-                            vector={["Dashboard", "Reportes"]}
-                            link={["/ventas", "/reportes"]}
-                            isOpen={menuAbierto === "Ventas"}
-                            onToggle={() => toggleMenu("Ventas")}
-                            isBarraContraida={isContraida}
-                        />
-                        <MenuItem
-                            icono="people-outline"
-                            titulo="Residentes"
-                            vector={["Lista", "Nuevo"]}
-                            link={["/residentes", "/nuevo-residente"]}
-                            isOpen={menuAbierto === "Residentes"}
-                            onToggle={() => toggleMenu("Residentes")}
-                            isBarraContraida={isContraida}
-                        />
-                        <MenuItem
-                            icono="calendar-outline"
-                            titulo="Reservas"
-                            vector={["Calendario", "Solicitudes"]}
-                            link={["/calendario", "/solicitudes"]}
-                            isOpen={menuAbierto === "Reservas"}
-                            onToggle={() => toggleMenu("Reservas")}
-                            isBarraContraida={isContraida}
-                        />
+                        <MenuItem icono="business-outline" titulo="Condominios" vector={["Gestionar", "Unidad","Agenda","Dashboard"]} link={["/crud_usuario", "/Unidades","/Agendas","/Dashboard"]} isOpen={menuAbierto === "Condominios"} onToggle={() => toggleMenu("Condominios")} isBarraContraida={isContraida} />
+                        <MenuItem icono="document-outline" titulo="Guardia" vector={["Ingreso", "Visista"]} link={["/Ingreso", "/Visista"]} isOpen={menuAbierto === "Documentos"} onToggle={() => toggleMenu("Documentos")} isBarraContraida={isContraida} />
+                        <MenuItem icono="document-outline" titulo="Usuario" vector={["reserva", "Visista","pagos"]} link={["/reserva", "/Visista","pagos"]} isOpen={menuAbierto === "ve1"} onToggle={() => toggleMenu("ve1")} isBarraContraida={isContraida} />
                     </div>
                 </div>
 
-                {/* SECCIÓN INFERIOR */}
                 <div className={styles["barra-inferior"]}>
                     <div className={styles.datos}>
-                        <span>👤 Jhonatan</span>
-                        <br />
-                        <span>📧 JhonatanLeonel@gmail.com</span>
+                        {usuario ? (
+                            <>
+                                <span>👤 {usuario.nombre} {usuario.apellido_1} {usuario.apellido_2}</span>
+                                <br />
+                                <span>📧 {usuario.ci || "Correo no disponible"}</span>
+                            </>
+                        ) : (
+                            <span>Cargando usuario...</span>
+                        )}
                     </div>
                 </div>
             </div>
 
-            {/* Contenido principal que se ajusta automáticamente */}
             <main className={styles.main}>
                 {children}
             </main>

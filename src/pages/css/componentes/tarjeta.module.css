@@ -1,0 +1,405 @@
+:root {
+    --color-bg-main: #0a0f1a;
+    --color-bg-card: #111827;
+    --color-primary: #3b82f6;
+    --color-secondary: #22c55e;
+    --color-text: #f9fafb;
+    --color-muted: #9ca3af;
+    --color-border: #374151;
+    --color-danger: #ef4444;
+  
+    --border-radius: 16px;
+    --border-radius-sm: 8px;
+    --shadow-soft: 0 4px 8px rgba(0, 0, 0, 0.3);
+    --shadow-medium: 0 6px 14px rgba(0, 0, 0, 0.4);
+    --shadow-large: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* 📌 CONTENEDOR PRINCIPAL */
+.contenedor_modulo {
+    background: linear-gradient(135deg, var(--color-bg-main), #0a1225);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin: 2rem auto;
+    box-shadow: var(--shadow-medium);
+    width: 100%;
+    max-width: 1400px;
+    color: var(--color-text);
+    position: relative;
+}
+
+.titulo {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    background: linear-gradient(135deg, var(--color-primary), #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+}
+
+/* 📌 CONTENEDOR DE MÓDULOS */
+.contenedor {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+/* 📌 TARJETA DE MÓDULO */
+.modulo {
+    background: var(--color-bg-card);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s ease;
+    border: 1px solid var(--color-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.modulo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), #8b5cf6);
+}
+
+.modulo:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-large);
+    border-color: var(--color-primary);
+}
+
+.modulo_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.modulo_header h2 {
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.badge {
+    background: var(--color-primary);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* 📌 ESTADÍSTICAS */
+.stats {
+    display: flex;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+}
+
+.stat_circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.disponible {
+    background: var(--color-secondary);
+    box-shadow: 0 0 8px var(--color-secondary);
+}
+
+.ocupado {
+    background: var(--color-danger);
+    box-shadow: 0 0 8px var(--color-danger);
+}
+
+/* 📌 BARRA DE PROGRESO */
+.progress_container {
+    margin: 1rem 0;
+}
+
+progress {
+    width: 100%;
+    height: 8px;
+    border-radius: 10px;
+    margin-bottom: 0.5rem;
+}
+
+progress::-webkit-progress-bar {
+    background: #1f2937;
+    border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+    background: linear-gradient(90deg, var(--color-secondary), var(--color-primary));
+    border-radius: 10px;
+}
+
+.progress_text {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    text-align: center;
+    display: block;
+}
+
+/* 📌 BOTONES */
+.boton {
+    background: linear-gradient(135deg, var(--color-primary), #8b5cf6);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--border-radius-sm);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 0.95rem;
+}
+
+.boton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* 📌 POPOVER/MODAL */
+.popover_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 2rem;
+    backdrop-filter: blur(5px);
+}
+
+.popover_content {
+    background: var(--color-bg-card);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-large);
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--color-border);
+    animation: popoverSlideIn 0.3s ease-out;
+}
+
+@keyframes popoverSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.popover_header {
+    background: linear-gradient(135deg, var(--color-primary), #8b5cf6);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.popover_header h2 {
+    margin: 0;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.close_button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.close_button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: rotate(90deg);
+}
+
+.popover_body {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* 📌 GRID DE UNIDADES EN POPOVER */
+.unidades_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.2rem;
+}
+
+.unidad_card {
+    background: var(--color-bg-main);
+    border-radius: var(--border-radius-sm);
+    padding: 1.2rem;
+    border: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.unidad_card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-soft);
+    border-color: var(--color-primary);
+}
+
+.unidad_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.unidad_header h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--color-primary);
+    flex: 1;
+}
+
+.status_badge {
+    padding: 0.3rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+.status_available {
+    background: rgba(34, 197, 94, 0.2);
+    color: var(--color-secondary);
+    border: 1px solid var(--color-secondary);
+}
+
+.status_occupied {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--color-danger);
+    border: 1px solid var(--color-danger);
+}
+
+.unidad_info {
+    margin-bottom: 1rem;
+}
+
+.price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 0.8rem;
+}
+
+.details p {
+    margin: 0.3rem 0;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.detail_button {
+    background: transparent;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 0.6rem 1rem;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 0.85rem;
+}
+
+.detail_button:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* 📌 LOADING */
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: var(--color-muted);
+    font-size: 1.1rem;
+}
+
+/* 📌 RESPONSIVE */
+@media (max-width: 768px) {
+    .contenedor_modulo {
+        padding: 1rem;
+        margin: 1rem;
+    }
+    
+    .contenedor {
+        grid-template-columns: 1fr;
+    }
+    
+    .popover_overlay {
+        padding: 1rem;
+    }
+    
+    .popover_content {
+        width: 95%;
+    }
+    
+    .unidades_grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .popover_header {
+        padding: 1rem;
+    }
+    
+    .popover_header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .popover_body {
+        padding: 1rem;
+    }
+}
