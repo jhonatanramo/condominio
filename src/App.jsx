@@ -10,15 +10,15 @@ import { Dashboard } from "./pages/condominio/Dashboard";
 
 // Pago Stripe
 import Checkout from "./prosesos/Checkout";
-import { Crear_Unidad } from "./components/crear_unidad";
+import { Crear_Unidad } from "./components/Crear_unidad";
 
 // ingreso
-import { Ingreso } from "./pages/guardia/ingreso";
+import { Ingreso } from "./pages/guardia/Ingreso";
 
 
 // Rutas
 import { Visita } from "./pages/usuario/visita";
-import { Reserva } from "./pages/usuario/reserva";
+import { Reserva } from "./pages/usuario/Reserva";
 
 // Componente cámara
 import CamaraPlacas from "./components/camara/CamaraPlacas";
